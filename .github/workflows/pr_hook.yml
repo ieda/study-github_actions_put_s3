@@ -1,0 +1,12 @@
+on:
+  pull-request:
+    type: [opened, closed]
+
+job:
+  debug:
+    runs-on: ubuntu-20.04
+    timeout-minutes: 5
+    steps:
+      - name: print branch name
+      - shell: bash
+      - run: echo ${{github.head_ref}}
