@@ -5,8 +5,9 @@ on:
 jobs:
   debug:
     runs-on: ubuntu-20.04
-    timeout-minutes: 5
+    timeout-minutes: 3
     steps:
-      - name: print branch name
-        shell: bash
-        run: echo ${{github.head_ref}}
+      - name: Print branch name
+        env:
+          BRANCH_NAME: ${{github.head_ref}}
+        run: echo $BRANCH_NAME
