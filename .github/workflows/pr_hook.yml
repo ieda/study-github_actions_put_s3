@@ -1,6 +1,6 @@
 on:
-  pull-request:
-    type: [opened, closed]
+  pull_request:
+    types: [opened, closed]
 
 job:
   debug:
