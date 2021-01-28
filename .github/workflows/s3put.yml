@@ -26,6 +26,12 @@ jobs:
         run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
         id: extract_branch
   
+      - name: Debug env
+        shell: bash
+        env:
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
+        run: echo ${S3_BUCKET:-3}
+
       - name: Upload file to S3
         env:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
