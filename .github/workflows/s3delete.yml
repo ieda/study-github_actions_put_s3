@@ -1,6 +1,8 @@
 name: Amazon S3 Deleting Object
 
-on: delete
+on:
+  pull_request:
+    types: closed
 
 jobs:
   build:
@@ -26,5 +28,6 @@ jobs:
       - name: Delete file from S3
         env: 
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
+          BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
         run: |
-          aws s3 rm s3://$S3_BUCKET/git/${{ steps.extract_branch.outputs.branch }}/sample.txt --quiet
+          aws s3 rm s3://$S3_BUCKET/git/$BRANCH_NAME/sample.txt --quiet
