@@ -27,7 +27,5 @@ jobs:
         id: extract_branch
   
       - name: Upload file to S3
-        env: 
-          S3_BUCKET: ${{ secrets.S3_BUCKET }}
         run: |
-          aws s3 cp ./sample.txt s3://${S3_BUCKET}/${{ steps.extract_branch.outputs.branch }}/ --quiet
+          aws s3 cp ./sample.txt s3://${{ secrets.S3_BUCKET }}/${{ steps.extract_branch.outputs.branch }}/ --quiet
