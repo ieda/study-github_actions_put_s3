@@ -1,12 +1,16 @@
 on: push
 jobs:
   print:
-    - name: Extract branch name
-      shell: bash
-      run: echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
-      id: extract_branch
+    runs-on: ubuntu-20.04
+    timeout-minutes: 5
 
-    - name: Print branch name
-      env:
-        BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
-      run: echo $BRANCH_NAME
+    steps:
+      - name: Extract branch name
+        shell: bash
+        run: echo "##[set-output name=branch;]${GITHUB_REF#refs/heads/}"
+        id: extract_branch
+
+      - name: Print branch name
+        env:
+          BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
+        run: echo $BRANCH_NAME
