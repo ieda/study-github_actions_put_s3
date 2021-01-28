@@ -30,4 +30,4 @@ jobs:
         env: 
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
         run: |
-          aws s3 cp ./sample.txt s3://$S3_BUCKET/${{ steps.extract_branch.outputs.branch }}/ --quiet
+          aws s3 cp ./sample.txt s3://${S3_BUCKET}/${{ steps.extract_branch.outputs.branch }}/ --quiet
