@@ -1,4 +1,4 @@
-name: Amazon S3 Sample
+name: Amazon S3 Put
 
 on:
   push:
@@ -30,4 +30,4 @@ jobs:
         env:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
         run: |
-          aws s3 cp --quiet ./sample.txt s3://$S3_BUCKET/git/${{ github.head_ref }}/
+          aws s3 cp --quiet ./sample.txt s3://$S3_BUCKET/git/${{ steps.extract_branch.outputs.branch }}/
