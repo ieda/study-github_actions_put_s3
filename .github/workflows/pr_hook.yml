@@ -2,7 +2,7 @@ on:
   pull_request:
     types: [opened, closed]
 
-job:
+jobs:
   debug:
     runs-on: ubuntu-20.04
     timeout-minutes: 5
