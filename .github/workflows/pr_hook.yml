@@ -8,5 +8,5 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: print branch name
-      - shell: bash
-      - run: echo ${{github.head_ref}}
+        shell: bash
+        run: echo ${{github.head_ref}}
