@@ -1,3 +1,5 @@
+name: Delete S3 Objects on PR merged
+
 on: 
   pull_request:
     types: closed
@@ -20,4 +22,4 @@ jobs:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
           BRANCH_NAME: ${{ github.head_ref }}
         run: |
-          aws s3 rm s3://$S3_BUCKET/git/$BRANCH_NAME --quiet --recursive
+          aws s3 rm s3://$S3_BUCKET/git/$BRANCH_NAME --recursive
