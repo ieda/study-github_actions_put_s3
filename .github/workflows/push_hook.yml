@@ -15,4 +15,4 @@ jobs:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
           BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
         run: | 
-          aws s3 cp . s3://$S3_BUCKET/git/$BRANCH_NAME/ --recursive --exclude "*" --include "*.json" --include "*.xml"
+          aws s3 cp . s3://$S3_BUCKET/git/$BRANCH_NAME --recursive --exclude "*" --include "*.json" --include "*.xml"
