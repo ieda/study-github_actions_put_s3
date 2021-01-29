@@ -17,6 +17,9 @@ jobs:
         run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
         id: extract_branch
 
+      - name: Checkout
+        uses: actions/checkout@v2
+
       - name: Upload files to S3 with branch-name prefix on push
         env:
           S3_BUCKET: ${{ secrets.S3_BUCKET }}
