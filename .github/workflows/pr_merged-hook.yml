@@ -1,0 +1,15 @@
+on: 
+  pull-request:
+    types: closed
+    branches: main
+
+jobs:
+  info:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-20.04
+    timeout-minutes: 3
+    steps:
+      - name: Print merged branch name
+        env:
+          BRANCH_NAME: ${{github.head_ref}}
+        run: echo $BRANCH_NAME
