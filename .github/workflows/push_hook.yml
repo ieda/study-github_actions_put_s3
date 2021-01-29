@@ -1,16 +1,18 @@
+name: Upload files to S3
 on: push
 jobs:
   print:
     runs-on: ubuntu-20.04
     timeout-minutes: 5
-
     steps:
       - name: Extract branch name
         shell: bash
         run: echo "::set-output name=branch::${GITHUB_REF#refs/heads/}"
         id: extract_branch
 
-      - name: Print branch name
+      - name: Upload files to S3 with branch-name prefix on push
         env:
+          S3_BUCKET: ${{ secrets.S3_BUCKET }}
           BRANCH_NAME: ${{ steps.extract_branch.outputs.branch }}
-        run: echo $BRANCH_NAME
+        run: | 
+          aws s3 cp --quiet . s3://$S3_BUCKET/git/$BRANCH_NAME/ --exclude="*" --include="*.json" --include="*.xml"
